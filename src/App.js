@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Add from "./components/add";
+import Works from "./components/works";
+import WorksContext from "./context/worksContext";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    works: [
+      { id: 1, workName: "HomeWork" },
+      { id: 2, workName: "Book" },
+      { id: 3, workName: "Study" },
+    ],
+  };
+  render() {
+    return (
+      <>
+        <WorksContext.Provider value={{ works: this.state.works }}>
+          <Add />
+          <Works />
+        </WorksContext.Provider>
+      </>
+    );
+  }
 }
 
 export default App;
